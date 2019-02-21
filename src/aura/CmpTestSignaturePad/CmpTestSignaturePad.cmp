@@ -1,0 +1,79 @@
+<!-- Component: 	CmpTestSignaturePad -->
+<!-- Created by: 	OpFocus(Veena Sundara-Heragu) on 2/14/19 -->
+<!-- Description: 	 -->
+<aura:component description="CmpTestSignaturePad"
+                implements="force:lightningQuickActionWithoutHeader"
+                access="global">
+
+    <aura:attribute name="fileId" type="Id" access="private"/>
+    <aura:attribute name="createdFileName" type="String" access="private"/>
+    <aura:attribute name="fileName" type="String" access="private"/>
+    <aura:attribute name="recordId" type="Id" access="private"/>
+    <aura:attribute name="data" type="String[]" access="private" />
+    <aura:attribute name="retrieveFileName" type="String" access="private"/>
+
+    <aura:handler name="EvtCmpSignatureFileCreated" event="c:EvtCmpSignatureFileCreated" action="{!c.fileCreated}"/>
+
+
+    <div class="box">
+        <h2 class="slds-text-heading_small">Create file Demo</h2>
+
+        <c:CmpSignatureCapture aura:id="sig"
+                               name="sig"
+                                fileName="{!v.fileName}"
+                               recordId="{!v.recordId}"
+                               showClearButton="true" />
+
+
+        <div class="slds-m-top_large">
+            <!--<lightning:button onclick="{!c.captureSvg}" label="Capture SVG"></lightning:button>-->
+            <!--<lightning:button onclick="{!c.captureSvgBase64}" label="Capture SVG Base64"></lightning:button>-->
+            <!--<lightning:button onclick="{!c.capturePNG}" label="Capture PNG"></lightning:button>-->
+            <lightning:input name="fileName" label="File Name" value="{!v.fileName}" onchange="{!c.clearFile}"/>
+            <lightning:input name="recordId" label="Id of Record To Relate To" value="{!v.recordId}"  onchange="{!c.clearFile}"/>
+            <!--<lightning:button class="slds-m-top_x-small" onclick="{!c.createFile}" label="Create File"></lightning:button>-->
+        </div>
+
+
+        <aura:if isTrue="{!v.fileId}">
+            <div class="slds-m-top_small">
+                <aura:if isTrue="{!v.recordId}">
+
+                    <a href="{!'/' + v.recordId}" target="_blank">View Record (File: {!v.createdFileName})</a>
+
+                    <aura:set attribute="else">
+                        <a href="{!'/' + v.fileId}" target="_blank">View File ({!v.createdFileName})</a>
+                    </aura:set>
+                </aura:if>
+            </div>
+        </aura:if>
+    </div>
+
+
+
+    <div class="box slds-m-top_large slds-m-bottom_large">
+
+        <h2 class="slds-text-heading_small">Load from file Demo</h2>
+
+        <lightning:input name="fileName" label="File Name / Id" value="{!v.retrieveFileName}"/>
+        <div class="slds-m-top_x-small">
+            <lightning:button onclick="{!c.loadFile}" label="Load File"></lightning:button>
+        </div>
+        <br/>
+        <c:CmpSignatureCapture aura:id="sig2"
+                               name="sig2"
+                               readOnly="true"/>
+
+    </div>
+
+    <!--<div id="svgBase64output" class="slds-m-top_large">-->
+    <!--</div>-->
+
+    <!--<div id="base30output" class="slds-m-top_large">-->
+    <!--</div>-->
+
+    <!--<div id="svgoutput" class="slds-m-top_large">-->
+    <!--</div>-->
+
+
+</aura:component>

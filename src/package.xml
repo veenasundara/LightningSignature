@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>CmpSignatureCapture</members>
+        <members>CmpTestSignaturePad</members>
+        <members>EvtCmpSignatureChanged</members>
+        <members>EvtCmpSignatureCleared</members>
+        <members>EvtCmpSignatureFileCreated</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>CmpSignatureCaptureCtrl</members>
+        <members>CmpSignatureCaptureCtrlTest</members>
+    	<name>ApexClass</name>
+    </types>
+    <version>45.0</version>
+</Package>

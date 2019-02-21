@@ -1,0 +1,6 @@
+<!-- Component: 	EvtCmpSignatureChanged -->
+<!-- Created by: 	OpFocus(Veena Sundara-Heragu) on 02/20/2017 -->
+<!-- Description: 	Some change made to signature -->
+<aura:event type="COMPONENT" description="EvtCmpSignatureChanged">
+    <aura:attribute name="name" type="String" description="name of component"/>
+</aura:event>

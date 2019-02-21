@@ -1,0 +1,8 @@
+<!-- Component: 	EvtCmpSignatureFileCreated -->
+<!-- Created by: 	OpFocus(Veena Sundara-Heragu) on 02/20/2017 -->
+<!-- Description: 	Salesforce file created -->
+<aura:event type="COMPONENT" description="EvtCmpSignatureFileCreated">
+    <aura:attribute name="name" type="String" description="name of component"/>
+    <aura:attribute name="contentDocumentId" type="Id" description="Id of ContentDocument created"/>
+    <aura:attribute name="fileName" type="String" description="Name of ContentDocument created"/>
+</aura:event>

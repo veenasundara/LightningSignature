@@ -1,0 +1,13 @@
+/**
+ * Created by veenaheragu on 2/20/19.
+ */
+
+.THIS .error {
+    color:red;
+}
+
+.THIS.box, .THIS .box {
+    border: 1px solid gray;
+    border-radius: .25rem;
+    padding: .25rem;
+}
