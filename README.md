@@ -1,4 +1,4 @@
-1# LightningSignature
+# LightningSignature
 Component to capture signatures and store them as Salesforce files.
 
 This component uses the JQuery library called JSigntaure.
