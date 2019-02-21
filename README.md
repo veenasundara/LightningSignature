@@ -14,6 +14,10 @@ The component will display a canvas to draw the signature and a button to save i
 the image will be saved as a .png file in Salesforce Content using the "fileName" specified. If no
 "fileName" is specified, the file will be named "signature.png". PLEASE SPECIFY "fileName" WITHOUT ANY EXTENSION. .png will be appended.
 
+
+![Component Image](https://raw.githubusercontent.com/veenasundara/LightningSignature/SingatureCapture.png)
+
+
 ```
 Optional parameters are:
 * recordId - recordId to link saved file to 
