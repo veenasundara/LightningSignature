@@ -15,7 +15,7 @@ the image will be saved as a .png file in Salesforce Content using the "fileName
 "fileName" is specified, the file will be named "signature.png". PLEASE SPECIFY "fileName" WITHOUT ANY EXTENSION. .png will be appended.
 
 
-![Component Image](https://raw.githubusercontent.com/veenasundara/LightningSignature/SingatureCapture.png)
+![Component Image](./SingatureCapture.png)
 
 
 ```
