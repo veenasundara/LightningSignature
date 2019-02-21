@@ -13,5 +13,9 @@
         <members>CmpSignatureCaptureCtrlTest</members>
     	<name>ApexClass</name>
     </types>
+    <types>
+        <members>jSignature_Brinley</members>
+        <name>StaticResource</name>
+    </types>
     <version>45.0</version>
 </Package>
