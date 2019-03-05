@@ -48,6 +48,18 @@
         let signatureLine = component.get("v.showSignatureLine"); // whether to show line below signature
         settings.signatureLine = signatureLine;
 
+        let signatureText = component.get("v.signatureText");
+        if(signatureText)
+        {
+            settings.signatureText = signatureText;
+        }
+
+        let signatureTextFont = component.get("v.signatureTextFont");
+        if(signatureTextFont)
+        {
+            settings.signatureTextFont = signatureTextFont;
+        }
+
 
         // initialize signature widget
         $sigdiv.jSignature(settings);
@@ -75,7 +87,6 @@
     {
         helper.hlpClear(component);
     },
-
 
     /**
      * captures the signature in the widget in the format specified and returns. It will be an array of 2 strings
@@ -169,7 +180,8 @@
      */
     isEmpty: function (component, event, helper)
     {
-        return helper.hlpIsEmpty(component);
+        let format = event.getParam('arguments').format || 'native';
+        return helper.hlpIsEmpty(component, format);
     },
 
     /**
@@ -204,6 +216,49 @@
         {
             helper.hlpLoadFile(component, contentDocumentId);
         }
+    },
+
+    /**
+     * update the settings of the widget for readonly
+     * @param component
+     * @param event
+     * @param helper
+     */
+    readOnlyChanged: function (component, event, helper)
+    {
+        //console.log('readonly changed, readOnly = ' + component.get("v.readOnly"));
+        let readOnly = component.get("v.readOnly");
+        let $sigdiv = $(helper.hlpGetId(component));
+        $sigdiv.jSignature("updateSetting", "readOnly", readOnly, true);
+        if(readOnly)
+        {
+            component.set("v.showClearButton", false);
+            component.set("v.showSaveButton", false);
+        }
+    },
+
+    signatureTextChanged: function (component, event, helper)
+    {
+        console.log('signatureTextChanged, signatureText = ' + component.get("v.signatureText"));
+        let signatureText = component.get("v.signatureText");
+        let $sigdiv = $(helper.hlpGetId(component));
+        $sigdiv.jSignature("updateSetting", "signatureText", signatureText, true);
+    },
+
+    signatureTextFontChanged: function (component, event, helper)
+    {
+        console.log('signatureTextFontChanged, signatureTextFont = ' + component.get("v.signatureTextFont"));
+        let signatureTextFont = component.get("v.signatureTextFont");
+        let $sigdiv = $(helper.hlpGetId(component));
+        $sigdiv.jSignature("updateSetting", "signatureTextFont", signatureTextFont, true);
+    },
+
+    showSignatureLineChanged: function (component, event, helper)
+    {
+        console.log('showSignatureLineChanged, showSignatureLine = ' + component.get("v.showSignatureLine"));
+        let showSignatureLine = component.get("v.showSignatureLine");
+        let $sigdiv = $(helper.hlpGetId(component));
+        $sigdiv.jSignature("updateSetting", "signatureLine", showSignatureLine, true);
     },
 
 })

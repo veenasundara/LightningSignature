@@ -17,6 +17,8 @@
     <aura:attribute name="showSaveButton" type="Boolean" default="true" access="public"/>
     <aura:attribute name="readOnly" type="Boolean" default="false" access="public"/>
     <aura:attribute name="showSignatureLine" type="Boolean" default="false" access="public" description="line to sign on"/>
+    <aura:attribute name="signatureText" type="String" default="false" access="public" description="text below line to sign on"/>
+    <aura:attribute name="signatureTextFont" type="String" default="false" access="public" description="font for text below line to sign on"/>
 
 
     <aura:attribute name="error" type="String" access="private"/>
@@ -39,7 +41,9 @@
         <aura:attribute name="recordId" type="String" description="recordId to link the file to"></aura:attribute>
     </aura:method>
 
-    <aura:method name="isEmpty" description="is there anything drawn?"/>
+    <aura:method name="isEmpty" description="is there anything drawn?">
+        <aura:attribute name="format" type="String" description="native, svg, svgbase64 or image"></aura:attribute>
+    </aura:method>
 
     <aura:method name="loadFile" action="{!c.loadFile}" description="loads image from salesforce file (must be png)">
         <aura:attribute name="fileName" type="String" description="name of salesforce file."></aura:attribute>
@@ -53,14 +57,22 @@
     <aura:registerEvent name="EvtCmpSignatureCleared" type="c:EvtCmpSignatureCleared" description="signature has been cleared"/>
 
     <aura:handler name="EvtCmpSignatureChanged" event="c:EvtCmpSignatureChanged" action="{!c.change}" description="to clear error as soon as signature changes"/>
+    <aura:handler name="change" value="{!v.readOnly}" action="{!c.readOnlyChanged}"/>
+    <aura:handler name="change" value="{!v.signatureText}" action="{!c.signatureTextChanged}"/>
+    <aura:handler name="change" value="{!v.signatureTextFont}" action="{!c.signatureTextFontChanged}"/>
+    <aura:handler name="change" value="{!v.showSignatureLine}" action="{!c.showSignatureLineChanged}"/>
 
+    <!--<ltng:require-->
+            <!--scripts="{!join(',',-->
+            <!--$Resource.jSignature_Brinley + '/jSignature-master/libs/jquery.js',-->
+            <!--$Resource.jSignature_Brinley + '/jSignature-master/libs/jSignature.min.js')}"-->
+            <!--afterScriptsLoaded="{!c.scriptsLoaded}" />-->
 
     <ltng:require
             scripts="{!join(',',
             $Resource.jSignature_Brinley + '/jSignature-master/libs/jquery.js',
-            $Resource.jSignature_Brinley + '/jSignature-master/libs/jSignature.min.js')}"
+            $Resource.jSignature_Brinley + '/jSignature-master/libs/jSignatureOpfocus.js')}"
             afterScriptsLoaded="{!c.scriptsLoaded}" />
-
 
     <aura:if isTrue="{!v.showSpinner}">
         <lightning:spinner aura:id="mySpinner" variant="brand" size="large" alternativeText="waiting"/>
@@ -71,15 +83,13 @@
     <div id="{!v.name + '_signature'}" class="{!v.class}">
     </div>
 
-
-
     <div class="slds-clearfix slds-m-top_x-small">
         <aura:if isTrue="{!v.error}">
             <div class="slds-float_left error">
                 {!v.error}
             </div>
         </aura:if>
-        <div class="slds-float_right">
+        <div class="slds-float_right" style="margin-top: -1.5rem; margin-right: .25rem;">
             <aura:if isTrue="{!v.showClearButton}">
                 <lightning:buttonIcon iconName="utility:undo" variant="bare" onclick="{! c.clear }" alternativeText="Clear" />
             </aura:if>
@@ -88,6 +98,7 @@
             </aura:if>
         </div>
     </div>
+
 
 
 </aura:component>

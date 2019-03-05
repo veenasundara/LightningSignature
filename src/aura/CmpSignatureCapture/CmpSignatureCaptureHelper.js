@@ -124,7 +124,7 @@
                     return;
                 }
                 var resp = response.getReturnValue();
-                console.log('hlpLoadFile resp = ' + resp);
+                //console.log('hlpLoadFile resp = ' + resp);
                 if($A.util.isEmpty(resp))
                 {
                     //console.log('in error');
@@ -203,10 +203,12 @@
     /**
      * returns true if there is nothing drawn on the widget
      */
-    hlpIsEmpty : function(component)
+    hlpIsEmpty : function(component, format)
     {
         let $sigdiv = $(this.hlpGetId(component));
-        return $sigdiv.jSignature('getData', 'native').length == 0;
+        format = format || 'native';
+        //return $sigdiv.jSignature('getData', 'native').length == 0;
+        return $sigdiv.jSignature('getData', format).length == 0;
     },
 
     /**
