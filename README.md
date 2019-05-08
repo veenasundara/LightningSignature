@@ -28,7 +28,7 @@ Optional parameters are:
 * pen-width - numeric 1,2,3 etc. default is 2
 * background-color - background color for the canvas
 * showSignatureLine - set it to true if you would like a line on the canvas on which to sign
-					default it false
+					default is false
 					NOTE: when saved to a file, the line will be included
 * signatureLine-color - color for the line described above
 * showClearButton - default is true. Set it to false if you do not what to show the button to clear 
