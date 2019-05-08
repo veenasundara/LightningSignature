@@ -6,7 +6,7 @@
     scriptsLoaded: function (component, event, helper)
     {
         // find the div to load signature pad into
-        //console.log('scripts loaded');
+        console.log('scripts loaded');
         // let $sigdiv = $("#signature");
         let divId = helper.hlpGetId(component);
         // console.log('divid = ' + divId);
@@ -18,6 +18,7 @@
 
         // set up settings for signature pad
         let settings = {};
+        settings.width='100%';
         let color = component.get("v.pen-color");
         if(color)
         {
@@ -77,6 +78,7 @@
 
         // settings = $sigdiv.jSignature("getSettings");
         // console.log('settings = ' + JSON.stringify(settings));
+        $(window).resize(function(){component.getEvent("EvtCmpSignatureResized").fire();});
     },
 
 
@@ -226,9 +228,9 @@
      */
     readOnlyChanged: function (component, event, helper)
     {
-        //console.log('readonly changed, readOnly = ' + component.get("v.readOnly"));
         let readOnly = component.get("v.readOnly");
         let $sigdiv = $(helper.hlpGetId(component));
+        console.log('readonly changed, $sigdiv = ' + $sigdiv);
         $sigdiv.jSignature("updateSetting", "readOnly", readOnly, true);
         if(readOnly)
         {
@@ -239,9 +241,9 @@
 
     signatureTextChanged: function (component, event, helper)
     {
-        console.log('signatureTextChanged, signatureText = ' + component.get("v.signatureText"));
         let signatureText = component.get("v.signatureText");
         let $sigdiv = $(helper.hlpGetId(component));
+        console.log('signatureTextChanged $sigdiv class = ' + $sigdiv.attr("class"));
         $sigdiv.jSignature("updateSetting", "signatureText", signatureText, true);
     },
 
@@ -259,6 +261,16 @@
         let showSignatureLine = component.get("v.showSignatureLine");
         let $sigdiv = $(helper.hlpGetId(component));
         $sigdiv.jSignature("updateSetting", "signatureLine", showSignatureLine, true);
+    },
+
+    resize: function (component, event, helper)
+    {
+      console.log('in resize');
+        let loadedFileData = component.get("v.loadedFileData");
+        if(!$A.util.isEmpty(loadedFileData))
+        {
+//            helper.hlpPopulateData(component, loadedFileData);
+        }
     },
 
 })

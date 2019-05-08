@@ -132,7 +132,7 @@
                     this.hideSpinner(component);
                     return;
                 }
-
+                component.set("v.loadedFileData", resp);
                 this.hlpPopulateData(component, resp);
 
                 this.hideSpinner(component);
